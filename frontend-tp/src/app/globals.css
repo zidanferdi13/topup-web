@@ -1,0 +1,53 @@
+/* Marketplace catalogue refresh: TopUp brand retained; original artwork, no source assets. */
+:root {
+  --color-banner: oklch(29% 0.085 258);
+  --color-on-banner: oklch(100% 0 0);
+  --color-banner-muted: oklch(86% 0.035 250);
+  --color-promo-paper: oklch(96% 0.035 75);
+  --color-promo-ink: oklch(42% 0.11 45);
+  --color-card-art: oklch(96% 0.018 250);
+}
+
+html {
+  height: 100%;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: clip;
+}
+
+body {
+  min-height: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+h1, h2 {
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--color-banner);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}

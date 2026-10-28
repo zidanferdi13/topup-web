@@ -1,0 +1,20 @@
+import assert from "node:assert/strict";
+import fs from "node:fs";
+import ts from "typescript";
+
+const compile = (path) => ts.transpileModule(fs.readFileSync(new URL(path, import.meta.url), "utf8"), { compilerOptions: { module: ts.ModuleKind.ESNext, target: ts.ScriptTarget.ES2020 } }).outputText;
+const url = (source) => `data:text/javascript;base64,${Buffer.from(source).toString("base64")}`;
+const catalog = url(compile("../src/data/catalog.ts"));
+const search = compile("../src/lib/catalog-search.ts").replace('"../data/catalog"', JSON.stringify(catalog));
+const { filterCatalog, CATALOG_NAV } = await import(url(search));
+assert.equal(filterCatalog("", "Semua").length, 12);
+assert.equal(filterCatalog("", "Games").length, 6);
+assert.equal(filterCatalog("", "Voucher").length, 2);
+assert.equal(filterCatalog("  MOBILE   legends ", "Games")[0].slug, "mobile-legends");
+assert.equal(filterCatalog("mlbb-86", "Semua")[0].slug, "mobile-legends");
+assert.equal(filterCatalog("86 Diamonds", "Semua")[0].slug, "mobile-legends");
+assert.equal(filterCatalog("mobile", "Voucher").length, 0);
+assert.equal(filterCatalog("not-found", "Semua").length, 0);
+assert.equal(filterCatalog("", "unknown").length, 12);
+assert.ok(CATALOG_NAV.every((item) => item.href.startsWith("/")));
+console.log("Catalog search, category intersection, normalization and navigation checked.");
