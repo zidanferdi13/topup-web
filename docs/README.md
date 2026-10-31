@@ -2,6 +2,8 @@
 
 Dokumentasi ringkas isi kode project.
 
+Status fitur, temuan audit, dan rencana berikutnya: [progress.md](./progress.md).
+
 | Bagian | Folder | Dokumen |
 | --- | --- | --- |
 | Backend (BE) | [`backend-tp`](../backend-tp) | [backend.md](./backend.md) |

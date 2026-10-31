@@ -71,7 +71,7 @@ Route `/admin` menyediakan gerbang login demo dan dashboard harga, diskon, promo
 
 ## Tahap berikutnya (belum diimplementasikan)
 
-Fokus masih persiapan FE dengan data demo lokal; API vendor belum tersedia.
+Fokus masih persiapan FE dengan data demo lokal; API vendor belum tersedia. Rencana gabungan FE/BE dan kesenjangan kontrak data: [progress.md](./progress.md).
 
 1. Lengkapi alur akun: profil, lupa password, dan reset password sebagai demo berlabel jelas, tanpa menyimpan password atau mengaku mengirim email.
 2. Siapkan halaman bantuan/FAQ dan tautan status pesanan. Isi kontak serta kebijakan produksi menunggu informasi pemilik, bukan dibuat-buat.

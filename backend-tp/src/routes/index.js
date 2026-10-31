@@ -3,7 +3,7 @@
 const express = require('express');
 const database = require('../config/database');
 const productRoutes = require('./product.routes');
-const { successResponse } = require('../utils/response');
+const { successResponse, errorResponse } = require('../utils/response');
 
 const router = express.Router();
 
@@ -38,11 +38,11 @@ PLACEHOLDER_MODULES.forEach((moduleName) => {
   const label = moduleName.charAt(0).toUpperCase() + moduleName.slice(1);
 
   router.all(`/${moduleName}`, (req, res) => {
-    return successResponse(res, null, `${label} module is not implemented yet`, 501);
+    return errorResponse(res, `${label} module is not implemented yet`, 501);
   });
 
   router.all(`/${moduleName}/*`, (req, res) => {
-    return successResponse(res, null, `${label} module is not implemented yet`, 501);
+    return errorResponse(res, `${label} module is not implemented yet`, 501);
   });
 });
 
