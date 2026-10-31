@@ -62,7 +62,7 @@ Service -> Provider -> External API (belum ada)
 | `src/utils/response.js` | Format response standar |
 | `src/utils/logger.js` | Logger console berlevel |
 | `src/providers/payment`, `src/providers/topup` | Kosong, untuk integrasi eksternal |
-| `tests/` | Kosong |
+| `tests/` | `node:test` (`npm test`): validator query dan route tanpa database |
 
 ## Database
 
@@ -94,6 +94,8 @@ Query `GET /api/products`:
 | `sort_by` | `sort_order` | `id`, `name`, `price`, `sort_order`, `created_at` |
 | `sort_dir` | `asc` | `asc`, `desc` |
 
+Nilai yang melanggar aturan, termasuk param berulang (`?page=1&page=2`), menghasilkan 400.
+
 Response:
 
 ```json
@@ -105,4 +107,4 @@ Item produk berisi `id`, `game_id`, `game { slug, name }`, `sku`, `name`, `descr
 
 ## Belum Ada
 
-Auth, player, orders, payment gateway, top-up provider, webhook idempotent, dan test otomatis.
+Auth, player, orders, payment gateway, top-up provider, webhook idempotent, dan test yang memakai database.

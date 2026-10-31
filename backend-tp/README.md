@@ -43,7 +43,7 @@ topup-backend/
 ├── database/
 │   ├── migrations/            # File SQL migration
 │   └── seeders/               # File SQL seeder
-├── tests/                     # Test (belum diisi)
+├── tests/                     # node:test, tanpa database (npm test)
 ├── .env
 ├── .env.example
 ├── .gitignore
@@ -109,6 +109,12 @@ Production:
 
 ```bash
 npm start
+```
+
+Test (tidak butuh MySQL):
+
+```bash
+npm test
 ```
 
 ## Available Endpoints
@@ -233,9 +239,11 @@ Lapisan health check sengaja masih sederhana. Modul pertama (**products**) sudah
 
 ## Roadmap (belum termasuk tahap ini)
 
-- Migration & seeder (`database/migrations`, `database/seeders`)
+Sudah selesai: migration & seeder `games`/`products`, modul products. Urutan lengkap dan temuan audit: [`docs/progress.md`](../docs/progress.md).
+
+- Endpoint games dan penyelarasan data dengan katalog frontend
 - Auth & authorization
-- Modul products, player, orders
+- Modul player, orders
 - Integrasi payment gateway (`src/providers/payment`)
 - Integrasi top-up provider (`src/providers/topup`)
 - Webhook handler idempotent

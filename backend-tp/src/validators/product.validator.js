@@ -25,7 +25,15 @@ function parseInteger(value) {
   return Number.isInteger(parsed) ? parsed : null;
 }
 
+const LIST_QUERY_KEYS = ['game', 'game_id', 'search', 'is_active', 'page', 'limit', 'sort_by', 'sort_dir'];
+
 function validateListQuery(query) {
+  // Repeated params (?a=1&a=2) arrive as arrays; reject them before parsing.
+  const repeated = LIST_QUERY_KEYS.filter((key) => query[key] !== undefined && typeof query[key] !== 'string');
+  if (repeated.length > 0) {
+    return { errors: repeated.map((key) => `${key} must be a single value`) };
+  }
+
   const errors = [];
 
   let gameId;
@@ -42,13 +50,13 @@ function validateListQuery(query) {
     errors.push('is_active must be a boolean');
   }
 
-  const page = parseInteger(query.page) ?? 1;
-  if (page < 1) {
-    errors.push('page must be greater than or equal to 1');
+  const page = query.page === undefined ? 1 : parseInteger(query.page);
+  if (page === null || page < 1) {
+    errors.push('page must be an integer greater than or equal to 1');
   }
 
-  const limit = parseInteger(query.limit) ?? 10;
-  if (limit < 1 || limit > MAX_LIMIT) {
+  const limit = query.limit === undefined ? 10 : parseInteger(query.limit);
+  if (limit === null || limit < 1 || limit > MAX_LIMIT) {
     errors.push(`limit must be between 1 and ${MAX_LIMIT}`);
   }
 
